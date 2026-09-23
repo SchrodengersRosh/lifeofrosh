@@ -47,38 +47,30 @@ export interface Segment {
 }
 
 export const segments: Segment[] = [
-   {
+  {
     id: 'open',
     cue: '00',
     timecode: '00:00',
     label: 'OPEN',
     spoken: [
-      "Right. You've got about four minutes.",
-      "I'll show you around.",
-      "",
-      "I'm Roshan. I'm 20, studying electronics and telecom at DSCE, Bengaluru.",
-      "",
-      "I build software. I work on digital projects. I get on stages. I play guitar.",
-      "",
-      "And I have a habit of getting very interested in things I probably could have left alone.",
-      "",
-      "Most of the time, I'm just trying to figure something out.",
-      "",
-      "Let's begin."
+      "Some days it's a backend. Some days it's a construction site. Some days it's a microphone.",
+      '',
+      'Roshan. 20. Electronics and telecom at DSCE, Bengaluru.',
+      '',
+      'I have a habit of getting very interested in things I could have left alone.',
     ],
-    after:
-      '[Yes, this is technically a portfolio. Moving on.]',
+    after: '[ lights down ]',
     links: [
       { label: 'Life outside the show →', href: '/life' },
     ],
   },
+
   {
     id: 'business',
     cue: '01',
     timecode: '00:30',
     label: 'THE BUSINESS',
     title: 'ROSHAN CONSTRUCTIONS',
-    // DRAFT: rewrite in Roshan's spoken voice before publishing
     spoken: [
       "First act. A construction company in Bengaluru: residential builds, renovation and remodeling, interiors, commercial work. It's my family's business, and I'm its business development lead, which is a grand way of saying I'm the one who has to make the phone ring.",
     ],
@@ -117,6 +109,7 @@ export const segments: Segment[] = [
       { label: 'Full case study', href: '/work/roshan-constructions' },
     ],
   },
+
   {
     id: 'system',
     cue: '02',
@@ -125,7 +118,6 @@ export const segments: Segment[] = [
     title: 'CORE',
     before:
       'Same host. Different room. Bear with the vocabulary for ninety seconds.',
-    // DRAFT: rewrite in Roshan's spoken voice before publishing
     spoken: [
       "Second act. Every college has the same problem: the information exists, but it's in a PDF someone forwarded on WhatsApp two years ago. CORE, the Campus Oriented Retrieval Engine, lets a student ask the campus a question in plain language and get an answer grounded in the actual documents. I built the part underneath the chat box.",
     ],
@@ -163,28 +155,28 @@ export const segments: Segment[] = [
     modules: [
       {
         heading: 'REVENANT',
-        body: 'An AI and backend systems project. Details when it\'s ready to be talked about properly.',
+        body: "An AI and backend systems project. Details when it's ready to be talked about properly.",
       },
     ],
   },
+
   {
     id: 'pyray',
     cue: '03',
     timecode: '02:00',
     label: 'THE DIGITAL WORK',
     title: 'PYRAY',
-    // DRAFT: rewrite in Roshan's spoken voice before publishing
     spoken: [
-      "I did digital growth work under the name Pyray: social media strategy, content, community, Meta and Google ads, SEO, UGC, email and lead generation. I worked with US-based clients on customer outreach, email campaigns, audience research, and lead-generation workflows."
+      'I did digital growth work under the name Pyray: social media strategy, content, community, Meta and Google ads, SEO, UGC, email and lead generation. I worked with US-based clients on customer outreach, email campaigns, audience research, and lead-generation workflows.',
     ],
   },
+
   {
     id: 'stage',
     cue: '04',
     timecode: '02:45',
     label: 'THE STAGE',
     title: 'THE STAGE',
-    // DRAFT: rewrite in Roshan's spoken voice before publishing
     spoken: [
       "Third act, and the reason the first two were easy to follow. I've worked college events at DSCE on the marketing, PR and fashion teams, and I've hosted them. Emcee means keeping a few hundred people with you when the schedule slips and the mic cuts out.",
     ],
@@ -230,6 +222,7 @@ export const segments: Segment[] = [
       },
     ],
   },
+
   {
     id: 'bench',
     cue: '05',
@@ -245,17 +238,17 @@ export const segments: Segment[] = [
       },
       {
         heading: 'REVENANT',
-        body: 'An AI and backend systems project. Details when it\'s ready to be talked about properly.',
+        body: "An AI and backend systems project. Details when it's ready to be talked about properly.",
       },
     ],
   },
+
   {
     id: 'house-lights',
     cue: '06',
     timecode: '04:15',
     label: 'HOUSE LIGHTS',
     title: 'HOUSE LIGHTS',
-    // DRAFT: rewrite in Roshan's spoken voice before publishing
     spoken: [
       "That's the show. If you run a business and suspect that your website, or the lack of one, is costing you customers, I'd like to hear about it. If you're building something technical and want someone who also understands the business side, same email.",
     ],

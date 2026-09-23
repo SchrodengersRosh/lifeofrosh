@@ -1,5 +1,10 @@
 @import 'tailwindcss';
 
+/* =========================================================
+   RUN OF SHOW
+   FOUNDATION
+   ========================================================= */
+
 /* === Fonts === */
 
 @font-face {
@@ -37,18 +42,25 @@
 /* === Theme === */
 
 @theme {
-  --color-stage: #0A0A0A;
-  --color-stage-2: #141414;
+  --color-stage: #0B0A09;
+  --color-stage-2: #151311;
   --color-light: #F5EFE0;
   --color-dim: rgba(245, 239, 224, 0.48);
   --color-faint: rgba(245, 239, 224, 0.22);
+  --color-hair: rgba(245, 239, 224, 0.10);
   --color-amber: #E9A23B;
+
+  --color-paper: #F5EFE0;
+  --color-ink: #141210;
 }
 
-/* === Base === */
+/* =========================================================
+   BASE
+   ========================================================= */
 
 html {
   scroll-behavior: smooth;
+  background: #0B0A09;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -58,9 +70,72 @@ html {
 }
 
 body {
-  background-color: var(--color-stage);
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  background: #0B0A09;
   color: var(--color-light);
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-newsreader), Georgia, 'Times New Roman', serif;
+  font-optical-sizing: auto;
+}
+
+/*
+ * The stage is not a flat black rectangle.
+ * It is a warm-black surface with a restrained work-light.
+ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      60vw 60vw at 78% 18%,
+      rgba(233, 162, 59, 0.07),
+      transparent 60%
+    ),
+    radial-gradient(
+      50vw 50vw at 10% 90%,
+      rgba(245, 239, 224, 0.025),
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      #0E0C0A 0%,
+      #0B0A09 50%,
+      #080807 100%
+    ),
+    radial-gradient(
+      120% 120% at 50% 50%,
+      transparent 58%,
+      rgba(0, 0, 0, 0.35) 100%
+    );
+}
+
+/*
+ * Static paper-like grain.
+ * It must be felt rather than noticed.
+ */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: soft-light;
+}
+
+/*
+ * Keep actual content above the atmospheric layers.
+ * Fixed navigation keeps its own z-index above this.
+ */
+body > * {
+  position: relative;
+  z-index: 2;
 }
 
 ::selection {
@@ -68,7 +143,9 @@ body {
   color: var(--color-stage);
 }
 
-/* === Skip link === */
+/* =========================================================
+   SKIP LINK
+   ========================================================= */
 
 .skip-link {
   position: absolute;
@@ -78,83 +155,209 @@ body {
   padding: 0.5rem 1rem;
   background: var(--color-amber);
   color: var(--color-stage);
-  font-weight: 700;
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.75rem;
+  font-weight: 400;
 }
 
 .skip-link:focus {
   left: 0;
 }
 
-/* === Focus === */
+/* =========================================================
+   FOCUS
+   ========================================================= */
 
 :focus-visible {
-  outline: 2px solid var(--color-amber);
-  outline-offset: 2px;
+  outline: 1px solid var(--color-amber);
+  outline-offset: 3px;
 }
 
-/* === Type tokens === */
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
 
+/*
+ * Display voice.
+ * Big Shoulders is deliberately restricted to titles and
+ * navigational display moments.
+ */
 .text-title {
   font-family: 'Big Shoulders Display', sans-serif;
-  font-size: clamp(3.5rem, 11vw, 11rem);
-  line-height: 0.86;
+  font-size: clamp(3.5rem, 8.5vw, 9rem);
+  line-height: 0.9;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  font-weight: 900;
+  font-weight: 700;
 }
 
+/*
+ * Roshan's voice.
+ * This is the human layer of the system.
+ */
 .text-spoken {
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-size: clamp(1.5rem, 2.6vw, 2.5rem);
-  line-height: 1.25;
-  letter-spacing: -0.01em;
+  font-family: var(--font-newsreader), Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.125rem, 1.65vw, 1.35rem);
+  line-height: 1.45;
+  letter-spacing: 0;
+  font-weight: 400;
+  font-optical-sizing: auto;
 }
 
+/*
+ * Longer explanatory copy.
+ */
 .text-body {
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-newsreader), Georgia, 'Times New Roman', serif;
   font-size: 1.0625rem;
-  line-height: 1.6;
+  line-height: 1.55;
+  letter-spacing: 0;
+  font-weight: 400;
 }
 
+/*
+ * Production system / metadata.
+ */
 .text-cue {
   font-family: 'Courier Prime', monospace;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   line-height: 1.5;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
 }
 
+/*
+ * Small production labels.
+ */
 .text-cue-sm {
   font-family: 'Courier Prime', monospace;
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   line-height: 1.4;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
+/*
+ * Stage directions are intentionally sparse.
+ */
 .stage-direction {
   font-family: 'Courier Prime', monospace;
   font-style: italic;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
   color: var(--color-dim);
 }
 
-/* === Borders === */
+/* Spoken links should feel like writing, not UI buttons. */
+.text-spoken-link {
+  font-family: var(--font-newsreader), Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+/* =========================================================
+   STRUCTURAL RULES
+   ========================================================= */
 
 .border-faint {
   border-color: var(--color-faint);
 }
 
-/* === Reduced motion === */
+.border-hair {
+  border-color: var(--color-hair);
+}
 
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+/*
+ * The permanent vertical hairline.
+ * The later OPEN phase will align content to this.
+ */
+.run-of-show-hairline {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 7vw;
+  width: 1px;
+  background: var(--color-hair);
+  pointer-events: none;
+  z-index: 3;
 }
 
 /* =========================================================
-   OPEN — layered editorial composition
+   ROOM ATMOSPHERE
+   ========================================================= */
+
+/*
+ * The rooms remain recognisably the same stage,
+ * but each receives a different light.
+ */
+section[data-cue='00'] {
+  background:
+    radial-gradient(
+      55vw 55vw at 78% 18%,
+      rgba(233, 162, 59, 0.035),
+      transparent 65%
+    );
+}
+
+section[data-cue='01'] {
+  background:
+    radial-gradient(
+      65vw 60vw at 72% 30%,
+      rgba(233, 162, 59, 0.05),
+      transparent 68%
+    );
+}
+
+section[data-cue='02'] {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(7, 12, 16, 0.22),
+      rgba(7, 9, 11, 0.04)
+    );
+}
+
+section[data-cue='03'] {
+  background:
+    radial-gradient(
+      60vw 60vw at 80% 45%,
+      rgba(245, 239, 224, 0.018),
+      transparent 70%
+    );
+}
+
+section[data-cue='04'] {
+  background:
+    radial-gradient(
+      62vw 62vw at 72% 32%,
+      rgba(233, 162, 59, 0.12),
+      transparent 66%
+    );
+}
+
+section[data-cue='05'] {
+  background:
+    radial-gradient(
+      55vw 55vw at 18% 78%,
+      rgba(233, 162, 59, 0.06),
+      transparent 68%
+    );
+}
+
+section[data-cue='06'] {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(245, 239, 224, 0.025),
+      rgba(245, 239, 224, 0.008)
+    );
+  background-color: #1A1715;
+}
+
+/* =========================================================
+   OPEN
    ========================================================= */
 
 .open-portrait {
@@ -168,27 +371,38 @@ body {
   width: 100%;
   height: auto;
   max-width: none;
+  opacity: 0.92;
 
   /*
-   * The mask removes the hard rectangular edge of the
-   * source image so the portrait behaves like an ink/photo
-   * layer embedded into the stage.
+   * Keep the portrait photographic rather than ghost-like.
+   * The mask only softens where the image meets the stage.
    */
-  -webkit-mask-image: radial-gradient(
-    ellipse 72% 72% at 53% 49%,
-    black 45%,
-    rgba(0, 0, 0, 0.97) 59%,
-    rgba(0, 0, 0, 0.72) 72%,
-    transparent 85%
-  );
+  -webkit-mask-image:
+    linear-gradient(
+      to right,
+      transparent 0%,
+      #000 18%
+    ),
+    linear-gradient(
+      to top,
+      transparent 0%,
+      #000 12%
+    );
 
-  mask-image: radial-gradient(
-    ellipse 72% 72% at 53% 49%,
-    black 45%,
-    rgba(0, 0, 0, 0.97) 59%,
-    rgba(0, 0, 0, 0.72) 72%,
-    transparent 85%
-  );
+  mask-image:
+    linear-gradient(
+      to right,
+      transparent 0%,
+      #000 18%
+    ),
+    linear-gradient(
+      to top,
+      transparent 0%,
+      #000 12%
+    );
+
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
 }
 
 .portrait-annotation {
@@ -202,8 +416,26 @@ body {
   white-space: nowrap;
 }
 
+/*
+ * Phase 01 typography override for the existing OPEN renderer.
+ * Phase 02 will replace these positional rules with the final
+ * editorial composition.
+ */
+.open-copy p:not(.stage-direction) {
+  font-family: var(--font-newsreader), Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: clamp(1.45rem, 2.25vw, 2rem);
+  line-height: 1.25;
+  letter-spacing: 0;
+  text-wrap: pretty;
+}
+
+.open-copy .stage-direction {
+  font-family: 'Courier Prime', monospace;
+}
+
 /* =========================================================
-   OPEN — desktop
+   OPEN — DESKTOP
    ========================================================= */
 
 @media (min-width: 1025px) {
@@ -212,11 +444,6 @@ body {
   }
 
   .open-portrait {
-    /*
-     * Push the portrait right enough that the face lives
-     * outside the main reading column, while the shoulder
-     * still enters the typography.
-     */
     left: 43%;
     top: 14%;
     width: clamp(620px, 58vw, 860px);
@@ -224,7 +451,7 @@ body {
 }
 
 /* =========================================================
-   OPEN — tablet
+   OPEN — TABLET
    ========================================================= */
 
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -240,10 +467,34 @@ body {
 }
 
 /* =========================================================
-   OPEN — mobile
+   OPEN — MOBILE
    ========================================================= */
 
 @media (max-width: 767px) {
+  .run-of-show-hairline {
+    display: none;
+  }
+
+  body::before {
+    background:
+      radial-gradient(
+        80vw 70vw at 50% 12%,
+        rgba(233, 162, 59, 0.055),
+        transparent 68%
+      ),
+      linear-gradient(
+        180deg,
+        #0E0C0A 0%,
+        #0B0A09 55%,
+        #080807 100%
+      );
+  }
+
+  body::after {
+    opacity: 0.025;
+    mix-blend-mode: normal;
+  }
+
   .open-portrait {
     position: relative;
     left: auto;
@@ -254,21 +505,35 @@ body {
   }
 
   .open-portrait-image {
-    -webkit-mask-image: radial-gradient(
-      ellipse 70% 70% at 53% 50%,
-      black 44%,
-      rgba(0, 0, 0, 0.96) 60%,
-      rgba(0, 0, 0, 0.7) 73%,
-      transparent 86%
-    );
+    -webkit-mask-image:
+      linear-gradient(
+        to bottom,
+        #000 0%,
+        #000 72%,
+        transparent 100%
+      ),
+      linear-gradient(
+        to right,
+        transparent 0%,
+        #000 15%,
+        #000 85%,
+        transparent 100%
+      );
 
-    mask-image: radial-gradient(
-      ellipse 70% 70% at 53% 50%,
-      black 44%,
-      rgba(0, 0, 0, 0.96) 60%,
-      rgba(0, 0, 0, 0.7) 73%,
-      transparent 86%
-    );
+    mask-image:
+      linear-gradient(
+        to bottom,
+        #000 0%,
+        #000 72%,
+        transparent 100%
+      ),
+      linear-gradient(
+        to right,
+        transparent 0%,
+        #000 15%,
+        #000 85%,
+        transparent 100%
+      );
   }
 
   .portrait-annotation {
@@ -277,16 +542,38 @@ body {
     font-size: 0.62rem;
   }
 
-  /*
-   * On mobile the text should remain the dominant reading
-   * experience. The portrait becomes a visual interruption
-   * between the introduction and the closing lines.
-   */
   .open-copy {
     width: 100%;
     max-width: 100%;
     margin-left: 0;
     padding-top: 4rem;
     padding-bottom: 5rem;
+  }
+
+  .open-copy p:not(.stage-direction) {
+    font-size: clamp(1.35rem, 5.8vw, 1.75rem);
+    line-height: 1.28;
+  }
+
+  .text-title {
+    font-size: clamp(3rem, 15vw, 4.5rem);
+  }
+
+  .text-spoken {
+    font-size: 1.0625rem;
+    line-height: 1.5;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
