@@ -1,9 +1,23 @@
-<!-- BEGIN:nextjs-agent-rules -->
+# AGENTS.md
 
-# This is NOT the Next.js you know
+## Project
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+Roshan's personal portfolio built with Next.js 16, TypeScript, Tailwind CSS v4, App Router.
 
-This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+## Design Identity
 
-<!-- END:nextjs-agent-rules -->
+Run of Show: a dark production-document aesthetic. The homepage is a cue sheet. Each segment is a major area of Roshan's work.
+
+## Key Rules
+
+1. Content comes from `content/` directory. Never invent content.
+2. No old editorial/paper/serif visual system.
+3. All images must work. Use temporary image slots for missing assets.
+4. Respect showClientNames flag in siteConfig.
+5. Zero lint errors, zero build errors required.
+
+## Commands
+
+- `npm run dev` - development server
+- `npm run build` - production build
+- `npm run lint` - lint check

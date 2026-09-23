@@ -1,26 +1,292 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* === Fonts === */
+
+@font-face {
+  font-family: 'Big Shoulders Display';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/BigShouldersDisplay-Bold.ttf') format('truetype');
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@font-face {
+  font-family: 'Big Shoulders Display';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('/fonts/BigShouldersDisplay-Black.ttf') format('truetype');
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@font-face {
+  font-family: 'Courier Prime';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/CourierPrime-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Courier Prime';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/CourierPrime-Italic.ttf') format('truetype');
+}
+
+/* === Theme === */
+
+@theme {
+  --color-stage: #0A0A0A;
+  --color-stage-2: #141414;
+  --color-light: #F5EFE0;
+  --color-dim: rgba(245, 239, 224, 0.48);
+  --color-faint: rgba(245, 239, 224, 0.22);
+  --color-amber: #E9A23B;
+}
+
+/* === Base === */
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-stage);
+  color: var(--color-light);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+::selection {
+  background-color: var(--color-amber);
+  color: var(--color-stage);
+}
+
+/* === Skip link === */
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background: var(--color-amber);
+  color: var(--color-stage);
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+/* === Focus === */
+
+:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 2px;
+}
+
+/* === Type tokens === */
+
+.text-title {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: clamp(3.5rem, 11vw, 11rem);
+  line-height: 0.86;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.text-spoken {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: clamp(1.5rem, 2.6vw, 2.5rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.text-body {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+.text-cue {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.text-cue-sm {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.stage-direction {
+  font-family: 'Courier Prime', monospace;
+  font-style: italic;
+  color: var(--color-dim);
+}
+
+/* === Borders === */
+
+.border-faint {
+  border-color: var(--color-faint);
+}
+
+/* === Reduced motion === */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =========================================================
+   OPEN — layered editorial composition
+   ========================================================= */
+
+.open-portrait {
+  position: absolute;
+  overflow: visible;
+  transform: translate3d(0, 0, 0);
+}
+
+.open-portrait-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+
+  /*
+   * The mask removes the hard rectangular edge of the
+   * source image so the portrait behaves like an ink/photo
+   * layer embedded into the stage.
+   */
+  -webkit-mask-image: radial-gradient(
+    ellipse 72% 72% at 53% 49%,
+    black 45%,
+    rgba(0, 0, 0, 0.97) 59%,
+    rgba(0, 0, 0, 0.72) 72%,
+    transparent 85%
+  );
+
+  mask-image: radial-gradient(
+    ellipse 72% 72% at 53% 49%,
+    black 45%,
+    rgba(0, 0, 0, 0.97) 59%,
+    rgba(0, 0, 0, 0.72) 72%,
+    transparent 85%
+  );
+}
+
+.portrait-annotation {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-dim);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   OPEN — desktop
+   ========================================================= */
+
+@media (min-width: 1025px) {
+  .open-copy {
+    position: relative;
+  }
+
+  .open-portrait {
+    /*
+     * Push the portrait right enough that the face lives
+     * outside the main reading column, while the shoulder
+     * still enters the typography.
+     */
+    left: 43%;
+    top: 14%;
+    width: clamp(620px, 58vw, 860px);
+  }
+}
+
+/* =========================================================
+   OPEN — tablet
+   ========================================================= */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .open-portrait {
+    left: 44%;
+    top: 16%;
+    width: clamp(500px, 58vw, 680px);
+  }
+
+  .portrait-annotation {
+    font-size: 0.68rem;
+  }
+}
+
+/* =========================================================
+   OPEN — mobile
+   ========================================================= */
+
+@media (max-width: 767px) {
+  .open-portrait {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: min(128vw, 580px);
+    margin: -1rem -12vw -4rem auto;
+    transform: translateX(8%);
+  }
+
+  .open-portrait-image {
+    -webkit-mask-image: radial-gradient(
+      ellipse 70% 70% at 53% 50%,
+      black 44%,
+      rgba(0, 0, 0, 0.96) 60%,
+      rgba(0, 0, 0, 0.7) 73%,
+      transparent 86%
+    );
+
+    mask-image: radial-gradient(
+      ellipse 70% 70% at 53% 50%,
+      black 44%,
+      rgba(0, 0, 0, 0.96) 60%,
+      rgba(0, 0, 0, 0.7) 73%,
+      transparent 86%
+    );
+  }
+
+  .portrait-annotation {
+    right: 8%;
+    bottom: 12%;
+    font-size: 0.62rem;
+  }
+
+  /*
+   * On mobile the text should remain the dominant reading
+   * experience. The portrait becomes a visual interruption
+   * between the introduction and the closing lines.
+   */
+  .open-copy {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    padding-top: 4rem;
+    padding-bottom: 5rem;
+  }
 }
