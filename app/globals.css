@@ -90,27 +90,19 @@ body::before {
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(
-      60vw 60vw at 78% 18%,
+    radial-gradient(60vw 60vw at 78% 18%,
       rgba(233, 162, 59, 0.07),
-      transparent 60%
-    ),
-    radial-gradient(
-      50vw 50vw at 10% 90%,
+      transparent 60%),
+    radial-gradient(50vw 50vw at 10% 90%,
       rgba(245, 239, 224, 0.025),
-      transparent 60%
-    ),
-    linear-gradient(
-      180deg,
+      transparent 60%),
+    linear-gradient(180deg,
       #0E0C0A 0%,
       #0B0A09 50%,
-      #080807 100%
-    ),
-    radial-gradient(
-      120% 120% at 50% 50%,
+      #080807 100%),
+    radial-gradient(120% 120% at 50% 50%,
       transparent 58%,
-      rgba(0, 0, 0, 0.35) 100%
-    );
+      rgba(0, 0, 0, 0.35) 100%);
 }
 
 /*
@@ -133,10 +125,12 @@ body::after {
  * Keep actual content above the atmospheric layers.
  * Fixed navigation keeps its own z-index above this.
  */
-body > * {
+body > main,
+body > footer {
   position: relative;
   z-index: 2;
 }
+#main { padding-top: 48px; }
 
 ::selection {
   background-color: var(--color-amber);
@@ -294,65 +288,51 @@ body > * {
  */
 section[data-cue='00'] {
   background:
-    radial-gradient(
-      55vw 55vw at 78% 18%,
+    radial-gradient(55vw 55vw at 78% 18%,
       rgba(233, 162, 59, 0.035),
-      transparent 65%
-    );
+      transparent 65%);
 }
 
 section[data-cue='01'] {
   background:
-    radial-gradient(
-      65vw 60vw at 72% 30%,
+    radial-gradient(65vw 60vw at 72% 30%,
       rgba(233, 162, 59, 0.05),
-      transparent 68%
-    );
+      transparent 68%);
 }
 
 section[data-cue='02'] {
   background:
-    linear-gradient(
-      180deg,
+    linear-gradient(180deg,
       rgba(7, 12, 16, 0.22),
-      rgba(7, 9, 11, 0.04)
-    );
+      rgba(7, 9, 11, 0.04));
 }
 
 section[data-cue='03'] {
   background:
-    radial-gradient(
-      60vw 60vw at 80% 45%,
+    radial-gradient(60vw 60vw at 80% 45%,
       rgba(245, 239, 224, 0.018),
-      transparent 70%
-    );
+      transparent 70%);
 }
 
 section[data-cue='04'] {
   background:
-    radial-gradient(
-      62vw 62vw at 72% 32%,
+    radial-gradient(62vw 62vw at 72% 32%,
       rgba(233, 162, 59, 0.12),
-      transparent 66%
-    );
+      transparent 66%);
 }
 
 section[data-cue='05'] {
   background:
-    radial-gradient(
-      55vw 55vw at 18% 78%,
+    radial-gradient(55vw 55vw at 18% 78%,
       rgba(233, 162, 59, 0.06),
-      transparent 68%
-    );
+      transparent 68%);
 }
 
 section[data-cue='06'] {
   background:
-    linear-gradient(
-      180deg,
+    linear-gradient(180deg,
       rgba(245, 239, 224, 0.025),
-      rgba(245, 239, 224, 0.008)
-    );
+      rgba(245, 239, 224, 0.008));
   background-color: #1A1715;
 }
 
@@ -378,28 +358,20 @@ section[data-cue='06'] {
    * The mask only softens where the image meets the stage.
    */
   -webkit-mask-image:
-    linear-gradient(
-      to right,
+    linear-gradient(to right,
       transparent 0%,
-      #000 18%
-    ),
-    linear-gradient(
-      to top,
+      #000 18%),
+    linear-gradient(to top,
       transparent 0%,
-      #000 12%
-    );
+      #000 12%);
 
   mask-image:
-    linear-gradient(
-      to right,
+    linear-gradient(to right,
       transparent 0%,
-      #000 18%
-    ),
-    linear-gradient(
-      to top,
+      #000 18%),
+    linear-gradient(to top,
       transparent 0%,
-      #000 12%
-    );
+      #000 12%);
 
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
@@ -477,17 +449,13 @@ section[data-cue='06'] {
 
   body::before {
     background:
-      radial-gradient(
-        80vw 70vw at 50% 12%,
+      radial-gradient(80vw 70vw at 50% 12%,
         rgba(233, 162, 59, 0.055),
-        transparent 68%
-      ),
-      linear-gradient(
-        180deg,
+        transparent 68%),
+      linear-gradient(180deg,
         #0E0C0A 0%,
         #0B0A09 55%,
-        #080807 100%
-      );
+        #080807 100%);
   }
 
   body::after {
@@ -506,34 +474,26 @@ section[data-cue='06'] {
 
   .open-portrait-image {
     -webkit-mask-image:
-      linear-gradient(
-        to bottom,
+      linear-gradient(to bottom,
         #000 0%,
         #000 72%,
-        transparent 100%
-      ),
-      linear-gradient(
-        to right,
+        transparent 100%),
+      linear-gradient(to right,
         transparent 0%,
         #000 15%,
         #000 85%,
-        transparent 100%
-      );
+        transparent 100%);
 
     mask-image:
-      linear-gradient(
-        to bottom,
+      linear-gradient(to bottom,
         #000 0%,
         #000 72%,
-        transparent 100%
-      ),
-      linear-gradient(
-        to right,
+        transparent 100%),
+      linear-gradient(to right,
         transparent 0%,
         #000 15%,
         #000 85%,
-        transparent 100%
-      );
+        transparent 100%);
   }
 
   .portrait-annotation {
@@ -546,8 +506,8 @@ section[data-cue='06'] {
     width: 100%;
     max-width: 100%;
     margin-left: 0;
-    padding-top: 4rem;
-    padding-bottom: 5rem;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
   }
 
   .open-copy p:not(.stage-direction) {
@@ -575,5 +535,536 @@ section[data-cue='06'] {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* =========================================================
+   PHASE 02 — OPEN COMPOSITION
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   MASTHEAD
+   --------------------------------------------------------- */
+
+.run-masthead {
+  height: 4rem;
+  pointer-events: none;
+}
+
+.run-masthead-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 11vw;
+  padding-right: 4vw;
+  border-bottom: 1px solid var(--color-hair);
+  background: rgba(11, 10, 9, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.run-masthead-brand,
+.run-masthead-show,
+.run-masthead-divider,
+.run-life-link {
+  pointer-events: auto;
+}
+
+.run-masthead-brand,
+.run-masthead-show,
+.run-masthead-divider,
+.run-life-link {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.6875rem;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.run-masthead-brand {
+  color: var(--color-light);
+}
+
+.run-masthead-divider {
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+  color: var(--color-faint);
+}
+
+.run-masthead-show {
+  color: var(--color-dim);
+}
+
+.run-life-link {
+  color: var(--color-dim);
+  transition: color 150ms ease;
+}
+
+.run-life-link:hover {
+  color: var(--color-light);
+}
+
+/* ---------------------------------------------------------
+   CUE RAIL
+   --------------------------------------------------------- */
+
+.run-cue-rail {
+  width: 5.5rem;
+}
+
+.run-cue-current {
+  min-width: 5rem;
+}
+
+.run-cue-index {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-top: 7rem;
+}
+
+.run-cue-number {
+  position: relative;
+  display: block;
+  color: var(--color-faint);
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.6875rem;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition:
+    color 150ms ease,
+    transform 150ms ease;
+}
+
+.run-cue-number:hover {
+  color: var(--color-light);
+  transform: translateX(2px);
+}
+
+.run-cue-number--active {
+  color: var(--color-amber);
+}
+
+.run-cue-tooltip {
+  position: absolute;
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: max-content;
+  max-width: 12rem;
+  padding-left: 0.5rem;
+  opacity: 0;
+  pointer-events: none;
+  color: var(--color-dim);
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: opacity 120ms ease;
+}
+
+.run-cue-number:hover .run-cue-tooltip,
+.run-cue-number:focus-visible .run-cue-tooltip {
+  opacity: 1;
+}
+
+/* ---------------------------------------------------------
+   NON-HOME NAV
+   --------------------------------------------------------- */
+
+.run-secondary-nav {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  padding-left: 11vw;
+  border-bottom: 1px solid var(--color-hair);
+  background: rgba(11, 10, 9, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ---------------------------------------------------------
+   OPEN STAGE
+   --------------------------------------------------------- */
+
+.open-section {
+  isolation: isolate;
+  background:
+    radial-gradient(60vw 60vw at 78% 18%,
+      rgba(233, 162, 59, 0.035),
+      transparent 65%);
+}
+
+.open-copy {
+  position: relative;
+  min-height: 100svh;
+}
+
+/*
+ * Lead:
+ * upper-left, wide enough to breathe,
+ * but deliberately stops before the face.
+ */
+.open-line {
+  position: absolute;
+  margin: 0;
+  font-family: var(--font-newsreader), Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-wrap: pretty;
+}
+
+.open-line--lead {
+  left: 11vw;
+  top: 24vh;
+  width: min(39ch, 41vw);
+  font-size: clamp(1.65rem, 2.15vw, 2rem);
+  line-height: 1.24;
+}
+
+.open-line--identity {
+  left: 18vw;
+  top: 46vh;
+  width: min(31ch, 29vw);
+  font-size: clamp(1.2rem, 1.5vw, 1.45rem);
+  line-height: 1.36;
+}
+
+.open-line--habit {
+  left: 30vw;
+  top: 63vh;
+  width: min(29ch, 26vw);
+  font-size: clamp(1.15rem, 1.42vw, 1.38rem);
+  line-height: 1.38;
+}
+
+/*
+ * Empty strings from the content model no longer create
+ * visible layout. These spacers exist only for semantic
+ * readability in the source data.
+ */
+.open-spacer {
+  display: none;
+}
+
+/* ---------------------------------------------------------
+   OPEN PORTRAIT
+   --------------------------------------------------------- */
+
+.open-section .open-portrait {
+  right: -2vw;
+  bottom: 0;
+  left: auto;
+  top: 1vh;
+  width: min(47vw, 780px);
+}
+
+.open-section .open-portrait-image {
+  opacity: 0.92;
+  filter: contrast(1.04);
+  -webkit-mask-image:
+    linear-gradient(to right,
+      transparent 0%,
+      #000 18%),
+    linear-gradient(to top,
+      transparent 0%,
+      #000 12%);
+  mask-image:
+    linear-gradient(to right,
+      transparent 0%,
+      #000 18%),
+    linear-gradient(to top,
+      transparent 0%,
+      #000 12%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+.open-section .portrait-annotation {
+  bottom: 7%;
+  right: 6%;
+}
+
+/* ---------------------------------------------------------
+   OPEN CLOSING DETAILS
+   --------------------------------------------------------- */
+
+.open-stage-direction {
+  position: absolute;
+  left: 11vw;
+  bottom: 6vh;
+  margin: 0;
+  font-size: 0.8125rem;
+}
+
+.open-life-link {
+  position: absolute;
+  right: 4vw;
+  bottom: 5.5vh;
+}
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 767px) {
+  .run-masthead {
+    height: 3.25rem;
+  }
+
+  .run-masthead-inner {
+    padding-left: 6vw;
+    padding-right: 6vw;
+  }
+
+  .run-masthead-show,
+  .run-masthead-divider {
+    display: none;
+  }
+
+  .run-life-link {
+    display: none;
+  }
+
+  .run-mobile-cue {
+    top: 1.05rem;
+    right: 6vw;
+  }
+
+  .run-cue-rail {
+    display: none;
+  }
+
+  .open-section {
+    min-height: auto;
+    padding-top: 3.25rem;
+  }
+
+  .open-copy {
+    min-height: auto;
+    padding: 0 6vw 5rem;
+  }
+
+  .open-line {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+  }
+
+  .open-line--lead {
+    left: 11vw;
+    top: 19vh;
+    width: min(39ch, 41vw);
+    font-size: clamp(1.65rem, 2.15vw, 2rem);
+    line-height: 1.22;
+  }
+
+  .open-line--identity {
+    left: 20vw;
+    top: 43vh;
+    width: min(31ch, 29vw);
+    font-size: clamp(1.2rem, 1.5vw, 1.45rem);
+    line-height: 1.34;
+  }
+
+  .open-line--habit {
+    left: 31vw;
+    top: 61vh;
+    width: min(29ch, 26vw);
+    font-size: clamp(1.15rem, 1.42vw, 1.38rem);
+    line-height: 1.36;
+  }
+
+  .open-section .open-portrait {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    top: auto;
+    width: min(128vw, 580px);
+    margin: -0.5rem -12vw -2rem auto;
+    transform: translateX(8%);
+  }
+
+  .open-section .open-portrait-image {
+    -webkit-mask-image:
+      linear-gradient(to bottom,
+        #000 0%,
+        #000 72%,
+        transparent 100%),
+      linear-gradient(to right,
+        transparent 0%,
+        #000 15%,
+        #000 85%,
+        transparent 100%);
+    mask-image:
+      linear-gradient(to bottom,
+        #000 0%,
+        #000 72%,
+        transparent 100%),
+      linear-gradient(to right,
+        transparent 0%,
+        #000 15%,
+        #000 85%,
+        transparent 100%);
+  }
+
+  .open-section .portrait-annotation {
+    bottom: 10%;
+    right: 9%;
+    font-size: 0.6rem;
+  }
+
+  .open-stage-direction {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    margin-top: 5rem;
+  }
+
+  .open-life-link {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    margin-top: 2rem;
+  }
+}
+
+/* ---------------------------------------------------------
+   MOBILE CUE OVERLAY
+   --------------------------------------------------------- */
+
+.run-mobile-overlay {
+  background: #0B0A09;
+}
+
+.run-mobile-cue-item {
+  display: grid;
+  grid-template-columns: 2rem 1fr auto;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--color-hair);
+  color: var(--color-dim);
+  text-decoration: none;
+}
+
+.run-mobile-cue-item--active {
+  color: var(--color-amber);
+}
+
+.run-mobile-cue-label {
+  font-family: var(--font-newsreader), Georgia, 'Times New Roman', serif;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  color: inherit;
+}
+
+/* ---------------------------------------------------------
+   DESKTOP / LARGE DESKTOP
+   --------------------------------------------------------- */
+
+@media (min-width: 1441px) {
+  .open-line--lead {
+    left: 11vw;
+  }
+
+  .open-line--identity {
+    left: 18vw;
+  }
+
+  .open-line--habit {
+    left: 30vw;
+  }
+}
+
+/* ---------------------------------------------------------
+   REDUCED MOTION
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .run-cue-number,
+  .run-cue-tooltip,
+  .run-life-link {
+    transition: none;
+  }
+}
+
+/* =========================================================
+   OPEN — FINAL DESKTOP GEOMETRY FIX
+   ========================================================= */
+
+@media (min-width: 768px) {
+
+  .open-section {
+    position: relative;
+    height: 100svh;
+    min-height: 100svh;
+    overflow: hidden;
+  }
+
+  .open-section > div {
+    position: relative;
+    width: 100%;
+    margin-top: 4rem;
+    height: calc(100% - 4rem);
+    min-height: calc(100% - 4rem);
+  }
+
+  .open-section .open-copy {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    z-index: 30;
+  }
+
+  .open-section .open-line--lead {
+    position: absolute;
+    left: 11vw;
+    top: 22vh;
+    width: min(39ch, 41vw);
+  }
+
+  .open-section .open-line--identity {
+    position: absolute;
+    left: 19vw;
+    top: 47vh;
+    width: min(31ch, 29vw);
+  }
+
+  .open-section .open-line--habit {
+    position: absolute;
+    left: 30vw;
+    top: 64vh;
+    width: min(29ch, 26vw);
+  }
+
+  .open-section .open-portrait {
+    position: absolute;
+    right: -2vw;
+    top: 1vh;
+    bottom: auto;
+    left: auto;
+    width: min(47vw, 780px);
+    z-index: 10;
+  }
+
+  .open-section .open-stage-direction {
+    position: absolute;
+    left: 11vw;
+    bottom: 6vh;
+  }
+
+  .open-section .open-life-link {
+    position: absolute;
+    right: 4vw;
+    bottom: 5.5vh;
   }
 }

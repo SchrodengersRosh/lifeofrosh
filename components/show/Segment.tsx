@@ -11,55 +11,24 @@ interface SegmentProps {
 export function Segment({ segment, isOpen }: SegmentProps) {
   /*
    * OPEN is intentionally treated differently from the other segments.
-   * It is a layered editorial composition rather than a normal grid.
+   * It is the visual thesis of the show: Roshan's voice occupies the
+   * stage while the portrait occupies the right visual field.
    */
   if (segment.id === 'open') {
     return (
       <section
         id={segment.id}
         data-cue={segment.cue}
-        className="relative min-h-[calc(100svh-48px)] overflow-hidden border-b border-faint"
+        aria-labelledby="open-heading"
+        className="open-section relative min-h-[100svh] overflow-hidden border-b border-faint"
       >
-        <div className="relative mx-auto min-h-[calc(100svh-48px)] w-full max-w-[1440px] px-5 md:px-8 lg:px-10">
-
-          {/* Cue rail */}
-          <aside className="absolute left-5 top-10 z-40 md:left-8 md:top-12 lg:left-10">
-            <div className="md:sticky md:top-[72px]">
-              <span className="text-cue-sm text-dim block">
-                CUE {segment.cue}
-              </span>
-
-              <span className="text-cue text-dim block mt-1">
-                {segment.timecode}
-              </span>
-
-              <span className="text-cue-sm text-amber block mt-2">
-                {segment.label}
-              </span>
-            </div>
-          </aside>
-
+        <div className="relative mx-auto min-h-[100svh] w-full max-w-[1440px]">
           {/* =====================================================
-              PORTRAIT LAYER
-
-              The image is deliberately oversized and offset.
-              The face sits in the right visual field while the
-              darker torso enters the typography area.
+              PORTRAIT
+              The face is protected. The darker torso is allowed
+              to enter the spoken layer.
               ===================================================== */}
-          <div
-            className="
-              open-portrait
-              pointer-events-none
-              absolute
-              z-10
-              left-[45%]
-              top-[14%]
-              w-[clamp(620px,58vw,860px)]
-              md:left-[45%]
-              lg:left-[44%]
-              xl:left-[43%]
-            "
-          >
+          <div className="open-portrait pointer-events-none absolute z-10">
             <div className="relative">
               <Image
                 src="/images/image.png"
@@ -67,7 +36,8 @@ export function Segment({ segment, isOpen }: SegmentProps) {
                 width={1327}
                 height={1186}
                 priority
-                className="open-portrait-image block h-auto w-full"
+                sizes="(max-width: 767px) 100vw, 46vw"
+                className="open-portrait-image"
               />
 
               <p className="portrait-annotation absolute bottom-[12%] right-[7%] z-30">
@@ -79,87 +49,71 @@ export function Segment({ segment, isOpen }: SegmentProps) {
           </div>
 
           {/* =====================================================
-              TYPOGRAPHY LAYER
+              OPEN SPOKEN VOICE
 
-              Above the image, but intentionally allowed to
-              overlap the darker shoulder/torso area.
+              The DOM order is intentionally the reading order.
+              Desktop CSS handles the stage positioning.
               ===================================================== */}
-          <div className="relative z-20 flex min-h-[calc(100svh-48px)] items-center">
-            <div
-              className="
-                open-copy
-                ml-[17%]
-                w-[52%]
-                max-w-[700px]
-                py-28
-                md:ml-[17%]
-                md:w-[52%]
-                lg:ml-[17%]
-                lg:w-[51%]
-              "
-            >
-              <div className="space-y-6 md:space-y-7">
+          <div className="open-copy relative z-30 min-h-[100svh]">
+            {segment.spoken.map((line, i) => {
+              if (!line) {
+                return (
+                  <div
+                    key={`space-${i}`}
+                    aria-hidden="true"
+                    className="open-spacer"
+                  />
+                )
+              }
 
-                {segment.spoken.map((line, i) => {
-                  const widthClasses = [
-                    'max-w-[610px]',
-                    'max-w-[500px]',
-                    'max-w-[650px]',
-                    'max-w-[620px]',
-                    'max-w-[570px]',
-                    'max-w-[500px]',
-                    'max-w-[430px]',
-                    'max-w-[560px]',
-                    'max-w-[330px]',
-                  ]
+              const className =
+                i === 0
+                  ? 'open-line open-line--lead'
+                  : i === 2
+                    ? 'open-line open-line--identity'
+                    : i === 4
+                      ? 'open-line open-line--habit'
+                      : 'open-line'
 
-                  return (
-                    <p
-                      key={i}
-                      className={`
-                        text-light
-                        text-[clamp(1.4rem,2.45vw,2.45rem)]
-                        leading-[1.14]
-                        tracking-[-0.035em]
-                        ${widthClasses[i] ?? 'max-w-[600px]'}
-                      `}
-                    >
-                      {line}
-                    </p>
-                  )
-                })}
-              </div>
-
-              {segment.after && (
-                <p className="stage-direction mt-12 mb-8 max-w-[520px]">
-                  {segment.after}
+              return (
+                <p
+                  key={i}
+                  id={i === 0 ? 'open-heading' : undefined}
+                  className={`${className} text-light`}
+                >
+                  {line}
                 </p>
-              )}
+              )
+            })}
 
-              {segment.links && (
-                <div className="mt-8 flex flex-wrap gap-4">
-                  {segment.links.map((link, i) => (
-                    <a
-                      key={i}
-                      href={link.href}
-                      className="text-cue text-light no-underline transition-colors hover:text-amber"
-                      {...(
-                        link.external
-                          ? {
-                              target: '_blank',
-                              rel: 'noopener noreferrer',
-                            }
-                          : {}
-                      )}
-                    >
-                      {link.label} →
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
+            {segment.after && (
+              <p className="open-stage-direction stage-direction">
+                {segment.after}
+              </p>
+            )}
+
+            {segment.links && (
+              <div className="open-life-link">
+                {segment.links.map((link, i) => (
+                  <a
+                    key={i}
+                    href={link.href}
+                    className="text-cue text-light no-underline transition-colors duration-150 hover:text-amber"
+                    {...(
+                      link.external
+                        ? {
+                            target: '_blank',
+                            rel: 'noopener noreferrer',
+                          }
+                        : {}
+                    )}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
-
         </div>
       </section>
     )
@@ -180,7 +134,7 @@ export function Segment({ segment, isOpen }: SegmentProps) {
       className={`relative border-b border-faint ${
         isOpen
           ? 'min-h-[calc(100svh-48px)] flex items-center'
-          : 'py-24 md:py-40'
+          : 'relative z-20 flex items-start md:min-h-[calc(100svh-48px)] py-12'
       }`}
     >
       <div className="w-full max-w-7xl mx-auto px-4 md:px-6">
@@ -189,8 +143,7 @@ export function Segment({ segment, isOpen }: SegmentProps) {
             isOpen ? '' : 'md:grid-cols-12'
           } gap-8 md:gap-12`}
         >
-
-          {/* Cue block */}
+          {/* Cue block for non-OPEN segments */}
           {!isOpen && (
             <div className="md:col-span-3 lg:col-span-2">
               <div className="md:sticky md:top-[72px]">
@@ -217,8 +170,6 @@ export function Segment({ segment, isOpen }: SegmentProps) {
                 : 'md:col-span-9 lg:col-span-10'
             }
           >
-
-            {/* Open segment: cue info inline */}
             {isOpen && (
               <div className="mb-8">
                 <span className="text-cue-sm text-dim">
@@ -430,7 +381,6 @@ export function Segment({ segment, isOpen }: SegmentProps) {
                 )}
               </div>
             )}
-
           </div>
         </div>
       </div>

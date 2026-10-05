@@ -54,14 +54,12 @@ export const segments: Segment[] = [
     label: 'OPEN',
     spoken: [
       "Some days it's a backend. Some days it's a construction site. Some days it's a microphone.",
-      '',
       'Roshan. 20. Electronics and telecom at DSCE, Bengaluru.',
-      '',
       'I have a habit of getting very interested in things I could have left alone.',
     ],
     after: '[ lights down ]',
     links: [
-      { label: 'Life outside the show →', href: '/life' },
+      { label: 'Life outside the show', href: '/life' },
     ],
   },
 
