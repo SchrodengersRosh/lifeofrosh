@@ -130,7 +130,7 @@ body > footer {
   position: relative;
   z-index: 2;
 }
-#main { padding-top: 48px; }
+#main { padding-top: 0; }
 
 ::selection {
   background-color: var(--color-amber);
@@ -856,25 +856,28 @@ section[data-cue='06'] {
   }
 
   .open-line--lead {
-    left: 11vw;
-    top: 19vh;
-    width: min(39ch, 41vw);
+    left: auto;
+    top: auto;
+    width: auto;
+    margin: 0 0 1.5rem;
     font-size: clamp(1.65rem, 2.15vw, 2rem);
     line-height: 1.22;
   }
 
   .open-line--identity {
-    left: 20vw;
-    top: 43vh;
-    width: min(31ch, 29vw);
+    left: auto;
+    top: auto;
+    width: auto;
+    margin: 0 0 1.5rem;
     font-size: clamp(1.2rem, 1.5vw, 1.45rem);
     line-height: 1.34;
   }
 
   .open-line--habit {
-    left: 31vw;
-    top: 61vh;
-    width: min(29ch, 26vw);
+    left: auto;
+    top: auto;
+    width: auto;
+    margin: 0 0 1.5rem;
     font-size: clamp(1.15rem, 1.42vw, 1.38rem);
     line-height: 1.36;
   }

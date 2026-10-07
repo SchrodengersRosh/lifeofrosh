@@ -69,9 +69,9 @@ export function Segment({ segment, isOpen }: SegmentProps) {
               const className =
                 i === 0
                   ? 'open-line open-line--lead'
-                  : i === 2
+                  : i === 1
                     ? 'open-line open-line--identity'
-                    : i === 4
+                    : i === 2
                       ? 'open-line open-line--habit'
                       : 'open-line'
 
@@ -143,25 +143,6 @@ export function Segment({ segment, isOpen }: SegmentProps) {
             isOpen ? '' : 'md:grid-cols-12'
           } gap-8 md:gap-12`}
         >
-          {/* Cue block for non-OPEN segments */}
-          {!isOpen && (
-            <div className="md:col-span-3 lg:col-span-2">
-              <div className="md:sticky md:top-[72px]">
-                <span className="text-cue-sm text-dim block">
-                  CUE {segment.cue}
-                </span>
-
-                <span className="text-cue text-dim block mt-1">
-                  {segment.timecode}
-                </span>
-
-                <span className="text-cue-sm text-amber block mt-2">
-                  {segment.label}
-                </span>
-              </div>
-            </div>
-          )}
-
           {/* Content */}
           <div
             className={
